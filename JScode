@@ -1,0 +1,244 @@
+
+//defines which conversion type to show
+function switchconvert() {
+	var convert = document.getElementById('convert-type-input');
+	var convertOption = convert.options[convert.selectedIndex].value;
+
+	if (convertOption == 'mass') {
+		document.getElementById('mass-wrap').style.display = 'block';
+		document.getElementById('temperature-wrap').style.display = 'none';
+		document.getElementById('time-wrap').style.display = 'none';
+		document.getElementById('length-wrap').style.display = 'none';
+		document.getElementById('area-wrap').style.display = 'none';
+		document.getElementById('volume-wrap').style.display = 'none';
+	}
+
+	else if (convertOption == 'temperature') {
+		document.getElementById('mass-wrap').style.display = 'none';
+		document.getElementById('temperature-wrap').style.display = 'block';
+		document.getElementById('time-wrap').style.display = 'none';
+		document.getElementById('length-wrap').style.display = 'none';
+		document.getElementById('area-wrap').style.display = 'none';
+		document.getElementById('volume-wrap').style.display = 'none';
+	}
+
+	else if (convertOption == 'time') {
+		document.getElementById('mass-wrap').style.display = 'none';
+		document.getElementById('temperature-wrap').style.display = 'none';
+		document.getElementById('time-wrap').style.display = 'block';
+		document.getElementById('length-wrap').style.display = 'none';
+		document.getElementById('area-wrap').style.display = 'none';
+		document.getElementById('volume-wrap').style.display = 'none';
+	}
+
+	else if (convertOption == 'length') {
+		document.getElementById('mass-wrap').style.display = 'none';
+		document.getElementById('temperature-wrap').style.display = 'none';
+		document.getElementById('time-wrap').style.display = 'none';
+		document.getElementById('length-wrap').style.display = 'block';
+		document.getElementById('area-wrap').style.display = 'none';
+		document.getElementById('volume-wrap').style.display = 'none';
+	}
+
+	else if (convertOption == 'area') {
+		document.getElementById('mass-wrap').style.display = 'none';
+		document.getElementById('temperature-wrap').style.display = 'none';
+		document.getElementById('time-wrap').style.display = 'none';
+		document.getElementById('length-wrap').style.display = 'none';
+		document.getElementById('area-wrap').style.display = 'block';
+		document.getElementById('volume-wrap').style.display = 'none';
+	}
+
+	else if (convertOption == 'volume') {
+		document.getElementById('mass-wrap').style.display = 'none';
+		document.getElementById('temperature-wrap').style.display = 'none';
+		document.getElementById('time-wrap').style.display = 'none';
+		document.getElementById('length-wrap').style.display = 'none';
+		document.getElementById('area-wrap').style.display = 'none';
+		document.getElementById('volume-wrap').style.display = 'block';
+	}
+}
+
+//function to switch units when button is pressed
+function switchOptions () {
+
+	var convert = document.getElementById('convert-type-input');
+	var convertOption = convert.options[convert.selectedIndex].value;
+
+	var input = document.getElementById('input-'+convertOption+'-type');
+	var inputOption = input.options[input.selectedIndex].value;
+	
+	var output = document.getElementById('output-'+convertOption+'-type');
+	var outputOption = output.options[output.selectedIndex].value;
+
+	function setSelect(inputunit, outputunit) {
+		document.getElementById('input-'+convertOption+'-type').value = `${outputunit}`;
+		document.getElementById('output-'+convertOption+'-type').value = `${inputunit}`;
+	}
+
+	setSelect(inputOption, outputOption);
+}
+
+
+function convertMass() {
+
+	//defines what units and values are for input and output
+	var input = document.getElementById('input-mass-type');
+	var inputOption = input.options[input.selectedIndex].value;
+
+	var output = document.getElementById('output-mass-type');
+	var outputOption = output.options[output.selectedIndex].value;
+
+	var inputValue = document.getElementById('input-mass-value').value;
+	var outputValue = document.getElementById('output-mass-value');
+
+	//object defining converson coefficients from a base unit to all other units
+	const conversions = {
+		kgtokg: 1,
+		kgtog: 1000,
+		kgtopound: 2.20462,
+		kgtostone: 0.157473,
+		kgtoounces: 35.274,
+	}
+
+	//formula to convert from input unit to base units then from base units to output unit
+	outputValue.innerText = ((inputValue / conversions[`kgto${inputOption}`]) * conversions[`kgto${outputOption}`]).toPrecision(5);
+
+	
+}
+
+function convertTemperature() {
+
+	var input = document.getElementById('input-temperature-type');
+	var inputOption = input.options[input.selectedIndex].value;
+
+	var output = document.getElementById('output-temperature-type');
+	var outputOption = output.options[output.selectedIndex].value;
+
+	var inputValue = document.getElementById('input-temperature-value').value;
+	var outputValue = document.getElementById('output-temperature-value');
+
+	//object defining coefficients and constants from a base unit to all other units
+	const conversions = [{
+		KtoK : 1,
+		KtoC : 1,
+		KtoF : 9/5},
+		{KtoK : 0,
+		KtoC : -273.15,
+		KtoF : -459.67
+		}]
+
+	//formula to convert from input unit to base units then from base units to output unit
+	outputValue.innerText = (((inputValue - conversions[1][`Kto${inputOption}`]) / conversions[0][`Kto${inputOption}`]) * conversions[0][`Kto${outputOption}`] + conversions[1][`Kto${outputOption}`]).toPrecision(5)
+}
+
+function convertTime() {
+
+	//defines what units and values are for input and output
+	var input = document.getElementById('input-time-type');
+	var inputOption = input.options[input.selectedIndex].value;
+
+	var output = document.getElementById('output-time-type');
+	var outputOption = output.options[output.selectedIndex].value;
+
+	var inputValue = document.getElementById('input-time-value').value;
+	var outputValue = document.getElementById('output-time-value');
+
+	//object defining converson coefficients from a base unit to all other units
+	const conversions = {
+		sectosec: 1,
+		sectomin: 1/60,
+		sectohr: 1/3600,
+		sectoday: 1/86400,
+		sectomon: 1/2628000,
+		sectoyr: 1/31536000
+	}
+
+	//formula to convert from input unit to base units then from base units to output unit
+	outputValue.innerText = ((inputValue / conversions[`secto${inputOption}`]) * conversions[`secto${outputOption}`]).toPrecision(5);
+}
+
+function convertLength() {
+
+	//defines what units and values are for input and output
+	var input = document.getElementById('input-length-type');
+	var inputOption = input.options[input.selectedIndex].value;
+
+	var output = document.getElementById('output-length-type');
+	var outputOption = output.options[output.selectedIndex].value;
+
+	var inputValue = document.getElementById('input-length-value').value;
+	var outputValue = document.getElementById('output-length-value');
+
+	//object defining converson coefficients from a base unit to all other units
+	const conversions = {
+		mtrtomil: 1000,
+		mtrtocent: 100,
+		mtrtomtr: 1,
+		mtrtokm: 0.001,
+		mtrtoinch: 39.37,
+		mtrtoft: 3.281,
+		mtrtoyrd: 1.0936,
+		mtrtomile: 1/1609.344
+	}
+
+	//formula to convert from input unit to base units then from base units to output unit
+	outputValue.innerText = ((inputValue / conversions[`mtrto${inputOption}`]) * conversions[`mtrto${outputOption}`]).toPrecision(5);
+}
+
+function convertArea() {
+
+	//defines what units and values are for input and output
+	var input = document.getElementById('input-area-type');
+	var inputOption = input.options[input.selectedIndex].value;
+
+	var output = document.getElementById('output-area-type');
+	var outputOption = output.options[output.selectedIndex].value;
+
+	var inputValue = document.getElementById('input-area-value').value;
+	var outputValue = document.getElementById('output-area-value');
+
+	//object defining converson coefficients from a base unit to all other units
+	const conversions = {
+		sqrmtrtosqrmtr : 1,
+		sqrmtrtosqrkm : 1/1000000,
+		sqrmtrtosqrft : 10.764,
+		sqrmtrtosqrmile : 1/2590000,
+		sqrmtrtohct : 1/10000,
+		sqrmtrtoacre : 1/4047,
+		sqrmtrtosqryrd : 1.196
+	}
+
+	//formula to convert from input unit to base units then from base units to output unit
+	outputValue.innerText = ((inputValue / conversions[`sqrmtrto${inputOption}`]) * conversions[`sqrmtrto${outputOption}`]).toPrecision(5);
+}
+
+
+
+
+function convertVolume() {
+
+	//defines what units and values are for input and output
+	var input = document.getElementById('input-volume-type');
+	var inputOption = input.options[input.selectedIndex].value;
+
+	var output = document.getElementById('output-volume-type');
+	var outputOption = output.options[output.selectedIndex].value;
+
+	var inputValue = document.getElementById('input-volume-value').value;
+	var outputValue = document.getElementById('output-volume-value');
+
+	//object defining converson coefficients from a base unit to all other units
+	const conversions = {
+		ltrtomltr: 1000,
+		ltrtoltr: 1,
+		ltrtopnt: 1.759754,
+		ltrtocup: 3.519508,
+		ltrtotsp: 168.93631,
+		ltrtotblsp: 56.312104,
+		ltrtogln: 1/4.54609
+	}
+
+	//formula to convert from input unit to base units then from base units to output unit
+	outputValue.innerText = ((inputValue / conversions[`ltrto${inputOption}`]) * conversions[`ltrto${outputOption}`]).toPrecision(5);
+}
