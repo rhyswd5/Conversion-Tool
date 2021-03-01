@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Conversion Tool</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<script src="https://kit.fontawesome.com/6da2e14f43.js" crossorigin="anonymous"></script>
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<meta charset="UTF-8">
+			<link rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Raleway">
+			<link rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Quicksand:wght@300&display=swap'">
+			<link rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Montserrat">
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+			<link rel="stylesheet"
+			href="conversion-style.css">
+		</head>
+
+
+		<body>
+			<header class = 'nav-wrap'>
+				<div id='nav-menu'>
+					<a href='conversion-webpage.html'><div class='menu-item'>Conversion Tool</div></a>
+					<a href='calculator-webpage.html'><div class='menu-item'>Calculator</div></a>
+					<a href='hangman-webpage.html'><div class='menu-item'>Hangman</div></a>
+				</div>
+
+				<div id = 'nav-bar'>
+					<div id = 'nav-title'>Rhys Woodard-Davies</div>
+						
+					<a href='../Portfolio_1.html'>
+						<div class='nav-item'>Home</div>
+					</a>
+					
+					<a href='../Portfolio_1.html#about-me'>
+						<div class='nav-item'>About Me</div>
+
+					<a href='../Portfolio_1.html#projects'>
+						<div class='nav-item'>Projects</div>
+					</a>
+
+					<a href='../Portfolio_1.html#contacts'>
+						<div class='nav-item'>Contact</div>
+					</a>
+
+					<button onclick="show_menu()" id='hamburger'><i id='icon' class="fas fa-bars"></i></button>
+
+				</div>
+
+			</header>
+
+			<h1 id='title'>Conversion Tool</h1>
+
+
+
+
+			<section id = 'Conversion-tool'>
+
+				<div id = 'conversion-type'>
+					<form oninput='switchconvert()'>
+						<select name='convert-type-input' id='convert-type-input' value='Select'>
+							<option value="default">Select</option>
+							<option value="mass">Mass</option>
+							<option value="temperature">Temperature</option>
+							<option value="time">Time</option>
+							<option value="length">Length</option>
+							<option value="area">Area</option>
+							<option value="volume">Volume</option>					
+						</select>
+					</form>
+				</div>
+
+
+
+
+
+
+				<div class='wrap' id = 'mass-wrap'>
+
+					<button class='btn btn-primary' onclick='switchOptions();convertMass()'><i class="fas fa-exchange-alt"></i></button>
+
+					<div class='unit'> 
+						<div class='unit-input'>
+							<select name='input-mass-type' id='input-mass-type'  onchange='convertMass()'>
+								<option value="kg">Kilograms</option>
+								<option value="g">Grams</option>
+								<option value="pound">Pounds</option>
+								<option value="stone">Stone</option>
+								<option value="ounces">Ounces</option>					
+							</select>
+						</div>
+
+						<div class='unit-output'>
+							<select name='output-mass-type' id='output-mass-type' onchange='convertMass()'>
+								<option value="kg">Kilograms</option>
+								<option value="g">Grams</option>
+								<option value="pound">Pounds</option>
+								<option value="stone">Stone</option>
+								<option value="ounces">Ounces</option>					
+							</select>
+						</div>
+					</div>
+
+					<form oninput="convertMass()" class="form">
+						<input type='number' id='input-mass-value'  class='input-value' value = ''>
+						<output id='output-mass-value' class='output-value'>0</output>
+					</form>
+				</div>
+
+
+
+
+
+
+				<div class='wrap' id = 'temperature-wrap'> 
+
+					<button class='btn btn-primary' onclick='switchOptions();convertTemperature()'><i class="fas fa-exchange-alt"></i></button>
+
+					<div class='unit'> 
+						<div class='unit-input'>
+							<select name='input-temperature-type' id='input-temperature-type' onchange='convertTemperature()'>
+								<option value="K">Kelvin</option>
+								<option value="F">Fahrenheit</option>
+								<option value="C">Celcius</option>				
+							</select>
+						</div>
+
+						<div class='unit-output'>	
+							<select name='output-temperature-type' id='output-temperature-type' onchange='convertTemperature()'>
+								<option value="K">Kelvin</option>
+								<option value="F">Fahrenheit</option>
+								<option value="C">Celcius</option>				
+							</select>
+						</div>
+					</div>
+
+					<form oninput="convertTemperature()" class="form">
+						<input type='number' id='input-temperature-value' class='input-value' value = ''>
+						<output id='output-temperature-value' class='output-value'>0</output>
+					</form>
+				</div>
+
+
+
+
+
+
+				<div class='wrap' id = 'time-wrap'>
+
+					<button class='btn btn-primary' onclick='switchOptions();convertTime()'><i class="fas fa-exchange-alt"></i></button>
+
+					<div class='unit'> 
+						<div class='unit-input'>
+							<select name='input-time-type' id='input-time-type' onchange='convertTime()'>
+								<option value="sec">Second</option>
+								<option value="min">Minute</option>
+								<option value="hr">Hour</option>
+								<option value="day">Day</option>
+								<option value="mon">Month</option>
+								<option value="yr">Year</option>						
+							</select>
+						</div>
+						
+						<div class='unit-output'>	
+							<select name='output-time-type' id='output-time-type' onchange='convertTime()'>
+								<option value="sec">Second</option>
+								<option value="min">Minute</option>
+								<option value="hr">Hour</option>
+								<option value="day">Day</option>
+								<option value="mon">Month</option>
+								<option value="yr">Year</option>					
+							</select>
+						</div>
+					</div>
+
+					<form oninput="convertTime()" class="form">
+						<input type='number' id='input-time-value'  class='input-value' value = ''>
+						<output id='output-time-value' class='output-value'>0</output>
+					</form>
+				</div>
+
+
+
+
+
+				<div class='wrap' id = 'length-wrap'> 
+
+					<button class='btn btn-primary' onclick='switchOptions();convertLength()'><i class="fas fa-exchange-alt"></i></button>
+
+					<div class='unit'>
+						<div class='unit-input'>
+							<select name='input-length-type' id='input-length-type' onchange='convertLength()'>
+								<option value="mil">Millimetre</option>
+								<option value="cent">Centimetre</option>
+								<option value="mtr">Metre</option>
+								<option value="km">Kilometre</option>
+								<option value="inch">Inch</option>
+								<option value="ft">Foot</option>
+								<option value="yrd">Yard</option>
+								<option value="mile">Mile</option>							
+							</select>
+						</div>
+
+						<div class='unit-output'>	
+							<select name='output-length-type' id='output-length-type' onchange='convertLength()'>
+								<option value="mil">Millimetre</option>
+								<option value="cent">Centimetre</option>
+								<option value="mtr">Metre</option>
+								<option value="km">Kilometre</option>
+								<option value="inch">Inch</option>
+								<option value="ft">Foot</option>
+								<option value="yrd">Yard</option>
+								<option value="mile">Mile</option>				
+							</select>
+						</div>
+					</div>
+
+					<form oninput="convertLength()" class="form">
+						<input type='number' id='input-length-value'  class='input-value' value = ''>
+						<output id='output-length-value' class='output-value'>0</output>
+					</form>
+
+				</div>
+
+
+
+
+
+				<div class='wrap' id = 'area-wrap'>
+
+					<button class='btn btn-primary' onclick='switchOptions();converArea()'><i class="fas fa-exchange-alt"></i></button>
+
+					<div class='unit'> 
+						<div class='unit-input'>
+							<select name='input-area-type' id='input-area-type' onchange='convertArea()'>
+								<option value="sqrmtr">Square Metre</option>
+								<option value="sqrkm">Square Kilometre</option>
+								<option value="sqrft">Square Foot</option>
+								<option value="sqryrd">Square Yard</option>
+								<option value="sqrmile">Square Mile</option>
+								<option value="hct">Hectare</option>
+								<option value="acre">Acre</option>								
+							</select>
+						</div>
+
+						<div class='unit-output'>	
+							<select name='output-area-type' id='output-area-type' onchange='convertArea()'>
+								<option value="sqrmtr">Square Metre</option>
+								<option value="sqrkm">Square Kilometre</option>
+								<option value="sqrft">Square Foot</option>
+								<option value="sqryrd">Square Yard</option>
+								<option value="sqrmile">Square Mile</option>
+								<option value="hct">Hectare</option>
+								<option value="acre">Acre</option>						
+							</select>
+						</div>
+					</div>
+
+					<form oninput="convertArea()" class="form">
+						<input type='number' id='input-area-value'  class='input-value' value = ''>
+						<output id='output-area-value' class='output-value'>0</output>
+					</form>
+
+				</div>
+
+
+
+
+				<div class='wrap' id = 'volume-wrap'>
+
+					<button class='btn btn-primary' onclick='switchOptions();convertVolume()'><i class="fas fa-exchange-alt"></i></button>
+
+					<div class='unit'>
+						<div class='unit-input'>
+							<select name='input-volume-type' id='input-volume-type' onchange='convertVolume()'>
+								<option value="mltr">Millilitre</option>
+								<option value="ltr">Litre</option>
+								<option value="pnt">Pint</option>
+								<option value="cup">Cup</option>
+								<option value="tsp">Teaspoon</option>
+								<option value="tbsp">Tablespoon</option>
+								<option value="ounce">Ounce</option>
+								<option value="gln">Gallon</option>								
+							</select>
+						</div>
+
+						<div class='unit-output'>	
+							<select name='output-volume-type' id='output-volume-type' onchange='convertVolume()'>
+								<option value="mltr">Millilitre</option>
+								<option value="ltr">Litre</option>
+								<option value="pnt">Pint</option>
+								<option value="cup">Cup</option>
+								<option value="tsp">Teaspoon</option>
+								<option value="tblsp">Tablespoon</option>
+								<option value="gln">Gallon</option>						
+							</select>
+						</div>
+					</div>
+
+					<form oninput="convertVolume()" class="form">
+						<input type='number' id='input-volume-value' class='input-value' value = ''>
+						<output id='output-volume-value' class='output-value'>0</output>
+					</form>
+
+				</div>
+
+
+				
+			</section>
+
+	
+
+			<script src='conversion-js.js'></script>
+			<script src='../showmenu.js'></script>
+		</body>
+	</html>
